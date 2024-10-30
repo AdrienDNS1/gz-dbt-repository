@@ -6,7 +6,30 @@ sources:
     tables:
       - name: sales
         identifier: raw_gz_sales
+        description: sales of Greenweez
+        columns:
+          - name: orders_id
+            description: orders identification - not unique 
+          - name: pdt_id
+            description: products identification 
+        tests:
+          - unique :
+              column_name: "(orders_id || '-' || pdt_id)"
       - name: product
         identifier: raw_gz_product
+        description: products of Greenweez
+        columns:
+          - name: products_id
+            description: primarey key
+            tests:
+              - unique
+              - not_null
       - name: ship
         identifier: raw_gz_ship
+        description: ship cost of Greenweez
+        columns:
+          - name: orders_id
+            description: primarey key
+            tests:
+              - unique
+              - not_null
